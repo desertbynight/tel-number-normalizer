@@ -29,11 +29,12 @@ class TelNumberNormalizer
             $line = StringManipulate::invertPlusAndDoubleZero($line);
             $line = StringManipulate::stripMinus($line);
             $line = StringManipulate::sanitizeNumberInt($line);
-            $toCSVArray[] = $line;
+            $toCSVArray[] = array($line_num => $line);
         }
 
-        $fp = fopen($outputFile, 'w');
-        fputcsv($fp, $toCSVArray);
+        $fp = fopen($outputFile, 'a');
+        foreach ($toCSVArray as $line)
+        fputcsv($fp, $line);
         fclose($fp);
 
     }
