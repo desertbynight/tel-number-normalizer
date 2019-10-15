@@ -1,4 +1,4 @@
-# tel-number-normalizer
+# telnumbernormalizer
 Accepts text files populated with tel numbers and returns csv with just integers
 Use it like:
 
