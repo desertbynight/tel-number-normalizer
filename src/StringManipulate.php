@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Iic;
+namespace desertbynight\telnumbernormalizer;
 
 
 class StringManipulate
