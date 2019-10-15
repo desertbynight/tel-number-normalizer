@@ -1,8 +1,8 @@
 <?php
 
-namespace Iic;
+namespace desertbynight\telnumbernormalizer;
 
-use \Iic\StringManipulate;
+use \desertbynight\telnumbernormalizer\StringManipulate;
 
 class TelNumberNormalizer
 {
