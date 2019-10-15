@@ -1,5 +1,5 @@
 {
-  "name": "desertbynight/tel-number-normalizer",
+  "name": "desertbynight/telnumbernormalizer",
   "description": "Accepts text files populated with tel numbers and returns csv with just integers",
   "keywords": ["telephone", "csv"],
   "license": "MIT",
@@ -9,7 +9,7 @@
   },
   "autoload": {
     "psr-4": {
-      "desertbynight\\TelNumberNormalizer\\": "src/"
+      "desertbynight\\telnumbernormalizer\\": "src/"
     }
   }
 }
