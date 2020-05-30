@@ -16,26 +16,34 @@ class TelNumberNormalizer
 
     public function filterItTo(string $outputFile)
     {
-
-        // Get the file into an array.
-        $lines = file($this->source);
-
-        // Output Array init
         $toCSVArray = [];
-
-        // Loop through our array
-        foreach ($lines as $line_num => $line) {
-            $line = StringManipulate::toHankaku($line);
-            $line = StringManipulate::invertPlusAndDoubleZero($line);
-            $line = StringManipulate::stripMinus($line);
-            $line = StringManipulate::sanitizeNumberInt($line);
-            $toCSVArray[] = array($line_num => $line);
+        
+        $row = 1;
+        
+        if (($handle = fopen($this->source, "r")) !== FALSE) {
+            while (($data = fgetcsv($handle, 1000,"\n")) !== FALSE) {
+                
+                $num = count($data);
+                
+                echo "<p> $num fields in line $row: <br /></p>\n";
+                
+                $row++;
+                
+                for ($c=0; $c < $num; $c++) {
+                    //echo $data[$c] . "<br />\n";
+                    $fp = fopen($outputFile, 'a');
+                    if($data[$c] == null) $out = "";
+                    else {
+                        $out = StringManipulate::toHankaku($data[$c]);
+                        $out = StringManipulate::invertPlusAndDoubleZero($out);
+                        $out = StringManipulate::stripMinus($out);
+                        $out = StringManipulate::sanitizeNumberInt($out);
+                    }
+            fputcsv($fp, array($out));
+            fclose($fp);
+                }
+            }
+            fclose($handle);
         }
-
-        $fp = fopen($outputFile, 'a');
-        foreach ($toCSVArray as $line)
-        fputcsv($fp, $line);
-        fclose($fp);
-
     }
 }
